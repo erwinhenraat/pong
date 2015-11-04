@@ -2,6 +2,7 @@ package
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import screens.GameScreen;
 	
 	/**
 	 * ...
@@ -20,6 +21,8 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
+			
+			addChild(new GameScreen());
 		}
 		
 	}

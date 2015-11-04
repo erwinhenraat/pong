@@ -1,5 +1,6 @@
 package screens 
 {
+	import actors.Paddle;
 	import flash.display.MovieClip;
 	/**
 	 * ...
@@ -10,7 +11,7 @@ package screens
 		
 		public function GameScreen() 
 		{
-			
+			addChild(new Paddle());
 		}
 		
 	}
