@@ -30,7 +30,7 @@ package actors
 		{
 			if (_target == null)_target = _balls[0];
 			if(_balls.length>1){
-				var closest:Ball;
+				var closest:Ball = _balls[0];
 				for (var i:int = 1; i < _balls.length; i++) 
 				{
 					var d:Number = _balls[i-1].x - _balls[i].x;
