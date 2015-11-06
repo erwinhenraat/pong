@@ -30,7 +30,7 @@ package screens
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 	
 			
-			for (var i:int = 0; i < 3; i++) 
+			for (var i:int = 0; i < 6; i++) 
 			{
 				balls.push(new Ball());
 				addChild(balls[i]);
@@ -42,7 +42,7 @@ package screens
 			}	
 			paddles.push(new AI());
 			paddles.push(new Player());
-			
+			paddles[0].balls = balls;
 			for (i = 0; i < 2; i++) 
 			{
 				
@@ -50,7 +50,7 @@ package screens
 				paddles[i].y = stage.stageHeight / 2;
 			}	
 			paddles[0].x = stage.stageWidth - 100;
-			paddles[0].balls = balls;
+			
 			paddles[1].x = 100;
 			
 			this.addEventListener(Event.ENTER_FRAME, loop);

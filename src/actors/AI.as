@@ -9,12 +9,12 @@ package actors
 	public class AI extends Paddle 
 	{
 		private var _target:Ball;
-		private var _speed = 10;
+		private var _speed:Number = 0;
+		private var _maxSpeed:Number = 15;
 		private var _balls:Array;
 		public function set balls(b:Array):void
 		{
-			_balls = b;
-			
+			_balls = b;			
 		}
 		public function AI() 
 		{
@@ -24,9 +24,7 @@ package actors
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			this.addEventListener(Event.ENTER_FRAME, loop);
-			
-			
+			this.addEventListener(Event.ENTER_FRAME, loop);						
 		}
 		private function getTarget():void
 		{
@@ -46,13 +44,11 @@ package actors
 			getTarget();
 									
 			if(_target != null){
-				if (_target.y < this.y - 20)_speed = -10;
-				else if (_target.y > this.y + 20)_speed = 10;
+				if (_target.y < this.y - 20)_speed = -_maxSpeed;
+				else if (_target.y > this.y + 20)_speed = _maxSpeed;
 				else _speed = 0;
 				this.y += _speed;
 			}
-		}
-		
+		}		
 	}
-
 }

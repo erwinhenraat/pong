@@ -57,6 +57,9 @@ package utils
 				case _fireKeyCode:
 					_fire = false;
 					break;
+				default:
+					trace("no code found check codes");
+					
 				
 			}
 		}		
@@ -73,6 +76,8 @@ package utils
 				case _fireKeyCode:
 					_fire = true;
 					break;
+				default:
+					trace("no code found check codes");
 				
 			}
 		}
