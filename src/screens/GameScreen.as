@@ -10,6 +10,7 @@ package screens
 	import flash.events.Event;
 	import flash.geom.Point;
 	import utils.MovementCalculator;
+	import utils.Scoreboard;
 	
 	/**
 	 * ...
@@ -19,6 +20,7 @@ package screens
 	{
 		private var balls:Array = [];
 		private var paddles:Array = [];
+		private var scoreboard:Scoreboard;
 		public static const GAME_OVER:String = "game over";
 		public function GameScreen() 
 		{
@@ -50,6 +52,9 @@ package screens
 			
 			paddles[1].x = 100;
 			
+			scoreboard = new Scoreboard();
+			addChild(scoreboard);
+			
 			this.addEventListener(Event.ENTER_FRAME, loop);
 		}		
 		
@@ -63,7 +68,7 @@ package screens
 			{
 				for (var j:int = 0; j < paddles.length; j++) 
 				{
-					if (paddles[j].hitTestPoint(balls[i].x, balls[i].y, true))
+					if (paddles[j].hitTestObject(balls[i]))
 					{
 						balls[i].xMove *= -1;
 					}
@@ -76,14 +81,40 @@ package screens
 			var b:Ball = e.target as Ball;
 			b.reset();
 			
+			scoreboard.player2 += 1;
+			
+			checkScore();
 		}		
 		private function onRightOut(e:Event):void 
 		{
 			var b:Ball = e.target as Ball;
 			b.reset();
+			scoreboard.player1 += 1;
 			
+			
+			checkScore();
 		}		
+		
+		private function checkScore():void 
+		{
+			if (scoreboard.player1 >= 10 || scoreboard.player2 >= 10)
+			{
+				destroy();
+				dispatchEvent(new Event(GAME_OVER));
+				
+			}
 			
+		}
+			
+		private function destroy():void
+		{
+			for (var i:int = 0; i < balls.length; i++) 
+			{
+				balls[i].destroy();
+				removeChild(balls[i]);
+			}
+			balls.splice(0, balls.length);
+		}
 	}
 
 }

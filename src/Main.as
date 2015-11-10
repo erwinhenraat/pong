@@ -2,6 +2,7 @@ package
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import screens.GameOverScreen;
 	import screens.GameScreen;
 	import screens.IntroScreen;
 	
@@ -13,6 +14,7 @@ package
 	{
 		private var gameScreen:GameScreen
 		private var introScreen:IntroScreen;
+		private var gameOverScreen:GameOverScreen;
 		public function Main() 
 		{
 			if (stage) init();
@@ -44,9 +46,22 @@ package
 		private function onGameOver(e:Event):void 
 		{
 			removeChild(gameScreen);
-			gameScreen = null;			
-			buildIntroSreen();
+			gameScreen.removeEventListener(GameScreen.GAME_OVER, onGameOver);
+						
+			gameOverScreen = new GameOverScreen();
+			addChild(gameOverScreen);
+			gameOverScreen.addEventListener(GameOverScreen.RESET, onReset);
 			
+			
+			
+		}
+		
+		private function onReset(e:Event):void 
+		{
+			removeChild(gameOverScreen);
+			gameOverScreen.removeEventListener(GameOverScreen.RESET, onReset);
+			
+			buildIntroSreen();
 		}
 		
 	}

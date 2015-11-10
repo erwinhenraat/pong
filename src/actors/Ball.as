@@ -76,6 +76,11 @@ package actors
 				dispatchEvent(new Event(Ball.OUTSIDE_LEFT));
 			}
 		}
+		public function destroy():void
+		{
+			this.removeEventListener(Event.ENTER_FRAME, loop);
+			
+		}
 		
 	}
 

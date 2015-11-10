@@ -77,7 +77,7 @@ package utils
 					_fire = true;
 					break;
 				default:
-					trace("no code found check codes");
+				//	trace("no code found check codes");
 				
 			}
 		}

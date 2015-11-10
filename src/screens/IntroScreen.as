@@ -15,16 +15,8 @@ package screens
 		private var title:TextField;
 		private var start:TextField;
 		
-		public static const START_GAME:String = "start game";
-		
-		[Embed(source = "../../lib/starjedi/Starjedi.ttf",
-		fontName = "jedi", 
-		mimeType = "application/x-font", 
-		fontWeight="normal", 
-		fontStyle="normal", 		
-		advancedAntiAliasing="true", 
-		embedAsCFF = "false")]		
-		private var JediFont:Class;		
+		public static const START_GAME:String = "start game";		
+				
 		
 		
 		
@@ -38,16 +30,13 @@ package screens
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			var format:TextFormat = new TextFormat();
-			format.font = "jedi";
-			format.size = 60;
-			format.color = 0xffffff;
+			
 						
 			title = new TextField();
 			title.embedFonts = true;
 			title.text = "Pong";
 			title.autoSize = TextFieldAutoSize.CENTER;			
-			title.setTextFormat(format);		
+			title.setTextFormat(textFormat);		
 			
 			title.x = stage.stageWidth / 2 - title.textWidth /2;
 			title.y = stage.stageHeight / 2 - title.textHeight /2;
@@ -56,10 +45,7 @@ package screens
 			
 			addChild(title);
 			
-			var subFormat:TextFormat = new TextFormat();
-			subFormat.font = "jedi";
-			subFormat.size = 20;
-			subFormat.color = 0xff0000;
+			
 			
 			start = new TextField();
 			start.embedFonts = true;
