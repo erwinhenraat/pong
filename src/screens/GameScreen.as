@@ -19,18 +19,15 @@ package screens
 	{
 		private var balls:Array = [];
 		private var paddles:Array = [];
+		public static const GAME_OVER:String = "game over";
 		public function GameScreen() 
 		{
-			this.addEventListener(Event.ADDED_TO_STAGE, init);
-			
-		}		
-		
+			this.addEventListener(Event.ADDED_TO_STAGE, init);			
+		}				
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-	
-			
-			for (var i:int = 0; i < 2; i++) 
+				for (var i:int = 0; i < 2; i++) 
 			{
 				balls.push(new Ball());
 				addChild(balls[i]);
@@ -59,10 +56,7 @@ package screens
 		private function loop(e:Event):void 
 		{
 			checkCollision();
-		}
-		
-	
-		
+		}	
 		private function checkCollision():void 
 		{
 			for (var i:int = 0; i < balls.length; i++) 
@@ -88,8 +82,7 @@ package screens
 			var b:Ball = e.target as Ball;
 			b.reset();
 			
-		}
-		
+		}		
 			
 	}
 

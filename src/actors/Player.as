@@ -13,15 +13,13 @@ package actors
 		
 		public function Player() 
 		{
-			this.addEventListener(Event.ADDED_TO_STAGE, init);
-		
+			this.addEventListener(Event.ADDED_TO_STAGE, init);		
 		}		
 		private function init(e:Event):void 
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			controller = new Controller(stage);
-			this.addEventListener(Event.ENTER_FRAME, loop);
-			
+			this.addEventListener(Event.ENTER_FRAME, loop);			
 		}
 		private function loop(e:Event):void 
 		{

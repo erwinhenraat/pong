@@ -3,6 +3,7 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import screens.GameScreen;
+	import screens.IntroScreen;
 	
 	/**
 	 * ...
@@ -10,7 +11,8 @@ package
 	 */
 	public class Main extends Sprite 
 	{
-		
+		private var gameScreen:GameScreen
+		private var introScreen:IntroScreen;
 		public function Main() 
 		{
 			if (stage) init();
@@ -20,9 +22,31 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			// entry point
+			// entry point			
 			
-			addChild(new GameScreen());
+			buildIntroSreen();
+			
+		}
+		private function buildIntroSreen():void
+		{			
+			introScreen = new IntroScreen();
+			addChild(introScreen);
+			introScreen.addEventListener(IntroScreen.START_GAME, startGame);
+		}
+		private function startGame(e:Event):void 
+		{
+			removeChild(introScreen);
+			gameScreen = new GameScreen();
+			addChild(gameScreen);
+			gameScreen.addEventListener(GameScreen.GAME_OVER, onGameOver);
+		}
+		
+		private function onGameOver(e:Event):void 
+		{
+			removeChild(gameScreen);
+			gameScreen = null;			
+			buildIntroSreen();
+			
 		}
 		
 	}
