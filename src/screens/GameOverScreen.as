@@ -14,6 +14,7 @@ package screens
 	public class GameOverScreen extends Screen 
 	{
 		private var title:TextField;
+		private var timer:Timer;
 		public static const RESET:String = "reset";
 		public function GameOverScreen() 
 		{
@@ -40,7 +41,7 @@ package screens
 			
 			stage.addEventListener(KeyboardEvent.KEY_UP, reset);
 			
-			var timer:Timer = new Timer(5000, 1);
+			timer = new Timer(5000, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
 			timer.start();
 		}
@@ -48,6 +49,7 @@ package screens
 		private function onComplete(e:TimerEvent):void 
 		{
 			reset();
+			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
 		}
 		private function reset(e:KeyboardEvent=null):void 
 		{
@@ -58,8 +60,11 @@ package screens
 				return;
 			}
 			if (e.keyCode == 32) {				
-				stage.removeEventListener(KeyboardEvent.KEY_UP, reset);
-				dispatchEvent(new Event(RESET));					
+				stage.removeEventListener(KeyboardEvent.KEY_UP, reset);				
+				timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
+				timer.stop();
+				dispatchEvent(new Event(RESET));
+				
 			}
 		
 		}
