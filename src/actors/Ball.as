@@ -55,9 +55,9 @@ package actors
 		
 		private function restart(e:TimerEvent):void 
 		{
-			_movement = MovementCalculator.calculateMovement(10 + Math.random() * 10, Math.random() * 360);
-			if (_movement.x > 0 && _movement.x < 0.2) _movement.x += 0.2;
-			if (_movement.x < 0 && _movement.x > -0.2) _movement.x -= 0.2;
+			_movement = MovementCalculator.calculateMovement(15 + Math.random() * 10, Math.random() * 360);
+			if (_movement.x > 0 && _movement.x < 2) _movement.x += 2;
+			if (_movement.x < 0 && _movement.x > -2) _movement.x -= 2;
 		}
 		private function loop(e:Event):void 
 		{

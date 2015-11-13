@@ -5,6 +5,7 @@ package
 	import screens.GameOverScreen;
 	import screens.GameScreen;
 	import screens.IntroScreen;
+	import utils.SoundPlayer;
 	
 	/**
 	 * ...
@@ -15,19 +16,19 @@ package
 		private var gameScreen:GameScreen
 		private var introScreen:IntroScreen;
 		private var gameOverScreen:GameOverScreen;
+		private var soundPlayer:SoundPlayer;
+		
 		public function Main() 
 		{
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
-		}
-		
+		}		
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point			
-			trace("change");
-			buildIntroSreen();
-			
+			soundPlayer = new SoundPlayer(this);
+			buildIntroSreen();	
 		}
 		private function buildIntroSreen():void
 		{			
@@ -41,8 +42,11 @@ package
 			gameScreen = new GameScreen();
 			addChild(gameScreen);
 			gameScreen.addEventListener(GameScreen.GAME_OVER, onGameOver);
-		}
-		
+			
+			
+			
+		}		
+	
 		private function onGameOver(e:Event):void 
 		{
 			removeChild(gameScreen);
@@ -54,8 +58,7 @@ package
 			
 			
 			
-		}
-		
+		}		
 		private function onReset(e:Event):void 
 		{
 			removeChild(gameOverScreen);

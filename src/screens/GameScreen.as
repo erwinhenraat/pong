@@ -21,7 +21,8 @@ package screens
 		private var balls:Array = [];
 		private var paddles:Array = [];
 		private var scoreboard:Scoreboard;
-		public static const GAME_OVER:String = "game over";
+		static public const GAME_OVER:String = "game over";
+		static public const BALL_BOUNCE:String = "ballBounce";
 		public function GameScreen() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);			
@@ -71,6 +72,9 @@ package screens
 					if (paddles[j].hitTestObject(balls[i]))
 					{
 						balls[i].xMove *= -1;
+						balls[i].x += balls[i].xMove / 2;
+						
+						dispatchEvent(new Event(BALL_BOUNCE));
 					}
 				}
 			}
