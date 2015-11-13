@@ -10,7 +10,7 @@ package screens
 	import flash.events.Event;
 	import flash.geom.Point;
 	import utils.MovementCalculator;
-	import utils.Scoreboard;
+	import screens.Scoreboard;
 	
 	/**
 	 * ...

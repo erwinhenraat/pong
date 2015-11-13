@@ -1,4 +1,4 @@
-package utils 
+package sounds 
 {
 	import flash.media.Sound;
 	import flash.events.Event;

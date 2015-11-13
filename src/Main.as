@@ -5,7 +5,7 @@ package
 	import screens.GameOverScreen;
 	import screens.GameScreen;
 	import screens.IntroScreen;
-	import utils.SoundPlayer;
+	import sounds.SoundPlayer;
 	
 	/**
 	 * ...
