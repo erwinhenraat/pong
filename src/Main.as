@@ -9,7 +9,7 @@ package
 	
 	/**
 	 * ...
-	 * @author erwin henraat
+	 * @author Pietje Puk
 	 */
 	public class Main extends Sprite 
 	{
