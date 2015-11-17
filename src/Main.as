@@ -1,5 +1,6 @@
 package
 {
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import screens.GameOverScreen;
@@ -11,7 +12,7 @@ package
 	 * ...
 	 * @author Erwin Henraat
 	 */
-	public class Main extends Sprite 
+	public class Main extends MovieClip 
 	{
 		private var gameScreen:GameScreen
 		private var introScreen:IntroScreen;
