@@ -10,7 +10,7 @@ package actors
 	{
 		private var _target:Ball;
 		private var _speed:Number = 0;
-		private var _maxSpeed:Number = 112;
+		private var _maxSpeed:Number = 12;
 		private var _balls:Array;
 		public function set balls(b:Array):void
 		{
