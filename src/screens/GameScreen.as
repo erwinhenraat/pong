@@ -72,6 +72,13 @@ package screens
 					if (paddles[j].hitTestObject(balls[i]))
 					{
 						balls[i].xMove *= -1;
+						var dir:Number = balls[i].xMove / Math.abs(balls[i].xMove);
+						while (paddles[j].hitTestObject(balls[i]))
+						{
+							balls[i].x += dir;
+							
+						}
+						
 						balls[i].x += balls[i].xMove / 2;
 						
 						dispatchEvent(new Event(BALL_BOUNCE));
