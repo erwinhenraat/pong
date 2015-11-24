@@ -41,7 +41,12 @@ package actors
 				
 				
 			}
+			if (this.y < 0) this.y = 0;
+			if (this.y > stage.stageHeight) this.y = stage.stageHeight;
+		
 			this.y += speed;
+			
+			
 		}
 		
 	}
