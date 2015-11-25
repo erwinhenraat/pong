@@ -48,6 +48,12 @@ package actors
 			
 			
 		}
+		public function destroy():void
+		{
+			this.removeEventListener(Event.ENTER_FRAME, loop);	
+			
+		}
+	
 		
 	}
 

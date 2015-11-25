@@ -30,7 +30,7 @@ package screens
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-				for (var i:int = 0; i < 2; i++) 
+				for (var i:int = 0; i < 20; i++) 
 			{
 				balls.push(new Ball());
 				addChild(balls[i]);
@@ -101,8 +101,7 @@ package screens
 			var b:Ball = e.target as Ball;
 			b.reset();
 			scoreboard.player1 += 1;
-			
-			
+					
 			checkScore();
 		}		
 		
@@ -111,6 +110,7 @@ package screens
 			if (scoreboard.player1 >= 10 || scoreboard.player2 >= 10)
 			{
 				destroy();
+				paddles[1].destroy();				
 				dispatchEvent(new Event(GAME_OVER));
 				
 			}
