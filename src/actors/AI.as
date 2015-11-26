@@ -49,6 +49,10 @@ package actors
 				else _speed = 0;
 				this.y += _speed;
 			}
-		}		
+		}	
+		public function destroy():void
+		{
+			this.addEventListener(Event.ENTER_FRAME, loop);									
+		}
 	}
 }

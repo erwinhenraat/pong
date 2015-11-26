@@ -115,8 +115,7 @@ package screens
 				
 			}
 			
-		}
-			
+		}			
 		private function destroy():void
 		{
 			for (var i:int = 0; i < balls.length; i++) 
@@ -124,6 +123,7 @@ package screens
 				balls[i].destroy();
 				removeChild(balls[i]);
 			}
+			paddles[1].destroy();
 			balls.splice(0, balls.length);
 		}
 	}
