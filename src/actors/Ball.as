@@ -29,6 +29,15 @@ package actors
 			_movement.x = move;
 			
 		}
+		public function get yMove():Number
+		{
+			return _movement.y;			
+		}
+		public function set yMove(move:Number):void
+		{
+			_movement.y = move;
+			
+		}
 		public function Ball() 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
