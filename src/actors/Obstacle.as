@@ -23,8 +23,6 @@ package actors
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addChild(new ObstacleArt());
-			this.enabled = false;
-			this.visible = true;
 			p = parent as MovieClip;
 			onTime(null);
 		}		
@@ -58,7 +56,7 @@ package actors
 		private function add():void
 		{
 			this.visible = true;
-			this.x = 250 + Math.random() * (stage.stageWidth - 500);  //wtf no stage?!!?!?!
+			this.x = 250 + Math.random() * (stage.stageWidth - 500);
 			this.y = Math.random() * stage.stageHeight;
 			toggle(4000 + Math.random() * 4000);
 		}
