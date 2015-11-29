@@ -5,6 +5,7 @@ package screens
 	import actors.Obstacle;
 	import actors.Paddle;
 	import actors.Player;
+	import actors.Powerup;
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -23,6 +24,7 @@ package screens
 		private var paddles:Array = [];
 		private var scoreboard:Scoreboard;
 		private var obstacles:Array = [];
+		private var powerups:Array = [];
 		static public const GAME_OVER:String = "game over";
 		static public const BALL_BOUNCE:String = "ballBounce";
 		public function GameScreen() 
@@ -56,10 +58,16 @@ package screens
 			
 			paddles[1].x = 100;
 			
-			for (var j:int = 0; j < 4; j++) 
+			for (i = 0; i < 4; i++) 
 			{
 				obstacles.push(new Obstacle());
-				addChild(obstacles[j]);
+				addChild(obstacles[i]);
+			}
+			
+			for (i = 0; i < 4; i++) 
+			{
+				powerups.push(new Powerup());
+				addChild(powerups[i]);
 			}
 						
 			scoreboard = new Scoreboard();
@@ -70,58 +78,44 @@ package screens
 		
 		private function loop(e:Event):void 
 		{
-			checkCollision();
+			checkCollision(paddles);
+			var obst:Obstacle = checkCollision(obstacles) as Obstacle;
+			if (obst != null) obst.remove();
+			var pow:Powerup = checkCollision(powerups) as Powerup;
+			if (pow != null)
+			{
+				removeChild(pow);
+				powerups.splice(powerups.indexOf(pow), 1);
+			}
 		}	
-		private function checkCollision():void 
+		private function checkCollision(objects:Array):MovieClip 
 		{
 			for (var i:int = 0; i < balls.length; i++) 
 			{
-				for (var j:int = 0; j < obstacles.length; j++) 
+				for (var j:int = 0; j < objects.length; j++) 
 				{
-					if (obstacles[j].hitTestObject(balls[i]))
+					if (objects[j].hitTestObject(balls[i]))
 					{
-						if (balls[i].xMove > 0 && balls[i].x < obstacles[j].x || balls[i].xMove < 0 && balls[i].x > obstacles[j].x)
+						if (balls[i].xMove > 0 && balls[i].x < objects[j].x || balls[i].xMove < 0 && balls[i].x > objects[j].x)
 						{
 							balls[i].xMove *= -1;							
-							balls[i].x += obstacles[j].x - balls[i].x;
+							balls[i].x += objects[j].x - balls[i].x;
 							dispatchEvent(new Event(BALL_BOUNCE));
+							return objects[j];
+							//if (objects[j] is Obstacle || objects[j] is Powerup) objects[j].remove();
 						}	
-						if (balls[i].yMove > 0 && balls[i].y < obstacles[j].y || balls[i].yMove < 0 && balls[i].y > obstacles[j].y)
+						if (balls[i].yMove > 0 && balls[i].y < objects[j].y || balls[i].yMove < 0 && balls[i].y > objects[j].y)
 						{
 							balls[i].yMove *= -1;							
-							balls[i].y += obstacles[j].y - balls[i].y;
+							balls[i].y += objects[j].y - balls[i].y;
 							dispatchEvent(new Event(BALL_BOUNCE));
-							
-							obstacles[j].remove();
-							
+							//if (objects[j] is Obstacle || objects[j] is Powerup) objects[j].remove();
+							return objects[j];
 						}
-						
-					}
-					
-					
-				}
-				for (j = 0; j < paddles.length; j++) 
-				{
-					if (paddles[j].hitTestObject(balls[i]))
-					{
-						if (balls[i].xMove > 0 && balls[i].x < paddles[j].x || balls[i].xMove < 0 && balls[i].x > paddles[j].x)
-						{
-							balls[i].xMove *= -1;							
-							balls[i].x += paddles[j].x - balls[i].x;
-							dispatchEvent(new Event(BALL_BOUNCE));
-						}	
-						if (balls[i].yMove > 0 && balls[i].y < paddles[j].y || balls[i].yMove < 0 && balls[i].y > paddles[j].y)
-						{
-							balls[i].yMove *= -1;							
-							balls[i].y += paddles[j].y - balls[i].y;
-							dispatchEvent(new Event(BALL_BOUNCE));
-						}
-					}
-					
-					
+					}					
 				}
 			}
-			
+			return null;
 		}
 		private function onLeftOut(e:Event):void 
 		{
