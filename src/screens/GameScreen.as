@@ -43,11 +43,12 @@ package screens
 				
 			}	
 			paddles.push(new AI());
-			paddles.push(new Player());
-			paddles[0].balls = balls;
-			
+			paddles.push(new AI());
+			//paddles.push(new Player());
+				
 			for (i = 0; i < 2; i++) 
-			{				
+			{		
+				if (paddles[i] is AI) paddles[i].balls = balls;
 				addChild(paddles[i]);
 				paddles[i].y = stage.stageHeight / 2;
 			}	
