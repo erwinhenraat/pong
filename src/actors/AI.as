@@ -10,7 +10,7 @@ package actors
 	{
 		private var _target:Ball;
 		private var _speed:Number = 0;
-		private var _maxSpeed:Number = 12;
+		private var _maxSpeed:Number = 15;
 		private var _balls:Array;
 		public function set balls(b:Array):void
 		{
@@ -33,8 +33,14 @@ package actors
 				var closest:Ball = _balls[0];
 				for (var i:int = 1; i < _balls.length; i++) 
 				{
+					
+					/*
 					var d:Number = _balls[i-1].x - _balls[i].x;
 					if (d < 0) closest = _balls[i];
+					*/
+					var d:Number = Math.abs(this.x - _balls[i].x);
+					var lastD:Number = Math.abs(this.x - closest.x);
+					if (d < lastD) closest = _balls[i];
 				}
 				_target = closest;
 			}

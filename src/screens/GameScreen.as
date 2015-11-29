@@ -32,7 +32,7 @@ package screens
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			for (var i:int = 0; i < 1; i++) 
+			for (var i:int = 0; i < 3; i++) 
 			{
 				balls.push(new Ball());
 				addChild(balls[i]);
@@ -45,6 +45,7 @@ package screens
 			paddles.push(new AI());
 			paddles.push(new Player());
 			paddles[0].balls = balls;
+			
 			for (i = 0; i < 2; i++) 
 			{				
 				addChild(paddles[i]);
@@ -54,7 +55,7 @@ package screens
 			
 			paddles[1].x = 100;
 			
-			for (var j:int = 0; j < 2; j++) 
+			for (var j:int = 0; j < 4; j++) 
 			{
 				obstacles.push(new Obstacle());
 				addChild(obstacles[j]);
@@ -74,28 +75,23 @@ package screens
 		{
 			for (var i:int = 0; i < balls.length; i++) 
 			{
-				for (var k:int = 0; k < obstacles.length; k++) 
+				for (var j:int = 0; j < obstacles.length; j++) 
 				{
-					if (obstacles[k].hitTestPoint(balls[i].x+balls[i].width/2,balls[i].y)||
-					obstacles[k].hitTestPoint(balls[i].x-balls[i].width/2,balls[i].y))
-					{						
-						balls[i].xMove *= -1;
-						var dirx:Number = balls[i].xMove / Math.abs(balls[i].xMove);
-						while (obstacles[j].hitTestObject(balls[i]))
+					if (obstacles[j].hitTestObject(balls[i]))
+					{
+						if (balls[i].xMove > 0 && balls[i].x < obstacles[j].x || balls[i].xMove < 0 && balls[i].x > obstacles[j].x)
 						{
-							balls[i].x += dir;
+							balls[i].xMove *= -1;							
+							balls[i].x += obstacles[j].x - balls[i].x;
+							dispatchEvent(new Event(BALL_BOUNCE));
+						}	
+						if (balls[i].yMove > 0 && balls[i].y < obstacles[j].y || balls[i].yMove < 0 && balls[i].y > obstacles[j].y)
+						{
+							balls[i].yMove *= -1;							
+							balls[i].y += obstacles[j].y - balls[i].y;
+							dispatchEvent(new Event(BALL_BOUNCE));
 							
-						}
-
-					}
-					if (obstacles[k].hitTestPoint(balls[i].x,balls[i].y+balls[i].height/2)||
-					obstacles[k].hitTestPoint(balls[i].x,balls[i].y-balls[i].height/2))
-					{						
-						balls[i].yMove *= -1;
-						var diry:Number = balls[i].yMove / Math.abs(balls[i].yMove);					
-						while (obstacles[j].hitTestObject(balls[i]))
-						{
-							balls[i].y += diry;
+							obstacles[j].remove();
 							
 						}
 						
@@ -103,22 +99,25 @@ package screens
 					
 					
 				}
-				for (var j:int = 0; j < paddles.length; j++) 
+				for (j = 0; j < paddles.length; j++) 
 				{
 					if (paddles[j].hitTestObject(balls[i]))
 					{
-						balls[i].xMove *= -1;
-						var dir:Number = balls[i].xMove / Math.abs(balls[i].xMove);
-						while (paddles[j].hitTestObject(balls[i]))
+						if (balls[i].xMove > 0 && balls[i].x < paddles[j].x || balls[i].xMove < 0 && balls[i].x > paddles[j].x)
 						{
-							balls[i].x += dir;
-							
+							balls[i].xMove *= -1;							
+							balls[i].x += paddles[j].x - balls[i].x;
+							dispatchEvent(new Event(BALL_BOUNCE));
+						}	
+						if (balls[i].yMove > 0 && balls[i].y < paddles[j].y || balls[i].yMove < 0 && balls[i].y > paddles[j].y)
+						{
+							balls[i].yMove *= -1;							
+							balls[i].y += paddles[j].y - balls[i].y;
+							dispatchEvent(new Event(BALL_BOUNCE));
 						}
-						
-						balls[i].x += balls[i].xMove / 2;
-						
-						dispatchEvent(new Event(BALL_BOUNCE));
 					}
+					
+					
 				}
 			}
 			
@@ -146,20 +145,28 @@ package screens
 			if (scoreboard.player1 >= 10 || scoreboard.player2 >= 10)
 			{
 				destroy();
-				paddles[1].destroy();				
+				
 				dispatchEvent(new Event(GAME_OVER));
 				
 			}
 			
 		}			
 		private function destroy():void
-		{
+		{			
+			this.removeEventListener(Event.ENTER_FRAME, loop);
 			for (var i:int = 0; i < balls.length; i++) 
 			{
 				balls[i].destroy();
 				removeChild(balls[i]);
 			}
-			paddles[1].destroy();
+			for (i = 0; i < paddles.length; i++) 
+			{
+				if (paddles[i] is Player) paddles[i].destroy();
+			}
+			for (i = 0; i < obstacles.length; i++) 
+			{
+				obstacles[i].destroy();
+			}
 			balls.splice(0, balls.length);
 		}
 	}

@@ -73,8 +73,9 @@ package actors
 			this.x += _movement.x;
 			this.y += _movement.y;
 			
-			if (this.y <= 0 || this.y >= stage.stageHeight)
+			if (this.y < 0 || this.y > stage.stageHeight)
 			{
+				//this.y < 0?this.x = 0:this.x = stage.stageHeight;
 				_movement.y *= -1;
 				
 			}
