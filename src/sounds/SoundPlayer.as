@@ -1,5 +1,6 @@
 package sounds 
 {
+	import flash.display.DisplayObject;
 	import flash.media.Sound;
 	import flash.events.Event;
 	import flash.media.SoundChannel;
@@ -15,10 +16,15 @@ package sounds
 	{
 		private var _sounds:Array = [];
 		private var _channels:Array = [];
-		private var _main:Main;
-		public function SoundPlayer(main:Main):void
+		private var _listenerObject:DisplayObject;
+		
+		
+		public function SoundPlayer():void
+		{						
+		}
+		public function initialize(listenerObject:DisplayObject):void
 		{
-			_main = main;			
+			_listenerObject = listenerObject;
 			
 			loadSound("../lib/pong.mp3");			
 			loadSound("../lib/pong2.mp3");			
@@ -26,9 +32,10 @@ package sounds
 			loadSound("../lib/lose.mp3");	
 			loadSound("../lib/intro.mp3");	
 						
-			_main.addEventListener(GameScreen.BALL_BOUNCE, onBounce, true);
-			_main.addEventListener(GameScreen.GAME_OVER, onGameOver, true);
-			_main.addEventListener(IntroScreen.START_GAME, onIntro, true);
+			_listenerObject.addEventListener(GameScreen.BALL_BOUNCE, onBounce, true);
+			_listenerObject.addEventListener(GameScreen.GAME_OVER, onGameOver, true);
+			_listenerObject.addEventListener(IntroScreen.START_GAME, onIntro, true);
+			
 			
 		}
 		

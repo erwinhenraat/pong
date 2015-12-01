@@ -13,7 +13,7 @@ package utils
 	 * 
 	 * 
 	 */
-	public class Controller extends EventDispatcher
+	public class Controller extends EventDispatcher implements IController
 	{
 		private var _up:Boolean;
 		private var _down:Boolean;

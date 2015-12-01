@@ -34,21 +34,26 @@ package screens
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			for (var i:int = 0; i < 3; i++) 
+			for (var i:int = 0; i < 5; i++) 
 			{
 				balls.push(new Ball());
 				addChild(balls[i]);
 				balls[i].reset();
 				
+				
 				balls[i].addEventListener(Ball.OUTSIDE_RIGHT, onRightOut);
 				balls[i].addEventListener(Ball.OUTSIDE_LEFT, onLeftOut);
+				
+			
+				//trace(balls[i].movement );
+				//balls[i].movement = new Point(0, 77);
 				
 			}	
 			paddles.push(new AI());
 			paddles.push(new AI());
 			//paddles.push(new Player());
 				
-			for (i = 0; i < 2; i++) 
+			for (i = 0; i < paddles.length; i++) 
 			{		
 				if (paddles[i] is AI) paddles[i].balls = balls;
 				addChild(paddles[i]);
@@ -57,6 +62,7 @@ package screens
 			paddles[0].x = stage.stageWidth - 100;
 			
 			paddles[1].x = 100;
+			//paddles[2].x = 100;
 			
 			for (i = 0; i < 4; i++) 
 			{
@@ -137,7 +143,7 @@ package screens
 		
 		private function checkScore():void 
 		{
-			if (scoreboard.player1 >= 10 || scoreboard.player2 >= 10)
+			if (scoreboard.player1 >= 50 || scoreboard.player2 >= 50)
 			{
 				destroy();
 				
