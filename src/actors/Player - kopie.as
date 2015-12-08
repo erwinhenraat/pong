@@ -10,7 +10,7 @@ package actors
 	{
 		private var controller:Controller;
 		private var speed:Number = 0;
-		private var maxSpeed:Number = 20;
+		
 		public function Player() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);		
@@ -25,11 +25,11 @@ package actors
 		{
 			if (controller.up)
 			{
-				speed = -maxSpeed;
+				speed = -15;
 			}
 			else if(controller.down)
 			{
-				speed = maxSpeed;
+				speed = 15;
 			}else
 			{
 				if (speed > 0) speed--;

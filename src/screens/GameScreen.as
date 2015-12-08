@@ -1,4 +1,4 @@
-package screens 
+﻿package screens 
 {
 	import actors.AI;
 	import actors.Ball;
@@ -30,18 +30,24 @@ package screens
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-				for (var i:int = 0; i < 2; i++) 
+				for (var i:int = 0; i < 1; i++) 
 			{
 				balls.push(new Ball());
 				addChild(balls[i]);
 				balls[i].reset();
+				
+				balls[i].xMove += 8;
 				
 				balls[i].addEventListener(Ball.OUTSIDE_RIGHT, onRightOut);
 				balls[i].addEventListener(Ball.OUTSIDE_LEFT, onLeftOut);
 				
 			}	
 			paddles.push(new AI());
+			
 			paddles.push(new Player());
+			
+			paddles[1].maxSpeed = 9;
+			
 			paddles[0].balls = balls;
 			for (i = 0; i < 2; i++) 
 			{

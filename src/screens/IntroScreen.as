@@ -1,4 +1,4 @@
-package screens 
+﻿package screens 
 {
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -34,12 +34,12 @@ package screens
 						
 			title = new TextField();
 			title.embedFonts = true;
-			title.text = "Pong";
+			title.text = "MLG Pong";
 			title.autoSize = TextFieldAutoSize.CENTER;			
 			title.setTextFormat(textFormat);		
 			
-			title.x = stage.stageWidth / 2 - title.textWidth /2;
-			title.y = stage.stageHeight / 2 - title.textHeight /2;
+			title.x = stage.stageWidth / 2 - title.textWidth / 2 ;
+			title.y = stage.stageHeight / 2 - title.textHeight  ;
 			
 			title.mouseEnabled = false;
 			
@@ -49,12 +49,12 @@ package screens
 			
 			start = new TextField();
 			start.embedFonts = true;
-			start.text = "press space to start";
+			start.text = "Press space to start";
 			start.autoSize = TextFieldAutoSize.CENTER;
 			start.setTextFormat(subFormat)
 			
 			start.x = stage.stageWidth / 2 - start.textWidth / 2;
-			start.y = stage.stageHeight / 2 + 20;
+			start.y = stage.stageHeight / 2 + 10;
 			
 			addChild(start);
 			
@@ -85,7 +85,7 @@ package screens
 			{
 				start.alpha += .1;	
 				if (start.alpha >= 1) dir = true;
-			}
+			} 
 			
 			
 		}

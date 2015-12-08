@@ -1,4 +1,4 @@
-package actors 
+﻿package actors 
 {
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -23,8 +23,8 @@ package actors
 		public function get xMove():Number
 		{
 			return _movement.x;			
-		}
-		public function set xMove(move:Number):void
+		};
+		ptrfgc function set xMove(move:Number):void
 		{
 			_movement.x = move;
 			
@@ -35,8 +35,7 @@ package actors
 			
 			
 		}
-		
-		private function init(e:Event):void 
+				private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addChild(new BallArt());
@@ -55,7 +54,7 @@ package actors
 		
 		private function restart(e:TimerEvent):void 
 		{
-			_movement = MovementCalculator.calculateMovement(15 + Math.random() * 10, Math.random() * 360);
+			_movement = MovementCalculator.calculateMovement(10, Math.random() * 360);
 			if (_movement.x > 0 && _movement.x < 2) _movement.x += 2;
 			if (_movement.x < 0 && _movement.x > -2) _movement.x -= 2;
 		}

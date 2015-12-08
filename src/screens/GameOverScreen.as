@@ -1,3 +1,4 @@
+﻿
 package screens 
 {
 	import flash.events.Event;
@@ -28,7 +29,7 @@ package screens
 						
 			title = new TextField();
 			title.embedFonts = true;
-			title.text = "game over";
+			title.text = "Get shit on";
 			title.autoSize = TextFieldAutoSize.CENTER;			
 			title.setTextFormat(textFormat);		
 			

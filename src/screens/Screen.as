@@ -1,4 +1,4 @@
-package screens 
+﻿package screens 
 {
 	import flash.display.MovieClip;
 	import flash.text.TextFormat;
@@ -17,6 +17,15 @@ package screens
 		embedAsCFF = "false")]		
 		private var JediFont:Class;
 		
+		[Embed(source="../../lib/runescape_uf.ttf",	
+		fontName = "rune",
+		mimeType = "application/x-font",
+		fontWeight = "normal",
+		fontStyle = "normal",
+		advancedAntiAliasing = "true",
+		embedAsCFF = "false")]
+		private var runeFont:Class;
+		
 		protected var textFormat:TextFormat;
 		protected var subFormat:TextFormat;
 		protected var scoreFormat:TextFormat;
@@ -25,20 +34,20 @@ package screens
 		public function Screen() 
 		{
 			textFormat = new TextFormat();
-			textFormat.font = "jedi";
+			textFormat.font = "rune";
 			textFormat.size = 60;
-			textFormat.color = 0xffffff;
+			textFormat.color =  0xFFFF00;
 			
 			
 			subFormat = new TextFormat();
-			subFormat.font = "jedi";
-			subFormat.size = 20;
+			subFormat.font = "rune";
+			subFormat.size = 30;
 			subFormat.color = 0xff0000;
 			
 			scoreFormat = new TextFormat();
-			scoreFormat.font = "jedi";
+			scoreFormat.font = "rune";
 			scoreFormat.size = 40;
-			scoreFormat.color = 0xffffff;
+			scoreFormat.color = 0xFFFF00;
 			
 		}
 		

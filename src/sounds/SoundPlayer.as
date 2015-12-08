@@ -1,4 +1,4 @@
-package sounds 
+﻿package sounds 
 {
 	import flash.media.Sound;
 	import flash.events.Event;
@@ -20,11 +20,11 @@ package sounds
 		{
 			_main = main;			
 			
-			loadSound("../lib/pong.mp3");			
-			loadSound("../lib/pong2.mp3");			
-			loadSound("../lib/pong3.mp3");	
-			loadSound("../lib/lose.mp3");	
-			loadSound("../lib/intro.mp3");	
+			loadSound("../lib/AIRHORN.mp3");			
+			loadSound("../lib/SHOTS FIRED.mp3");			
+			loadSound("../lib/intervention420.mp3");	
+			loadSound("../lib/sugarhorn.mp3");	
+			loadSound("../lib/swamp.mp3");	
 						
 			_main.addEventListener(GameScreen.BALL_BOUNCE, onBounce, true);
 			_main.addEventListener(GameScreen.GAME_OVER, onGameOver, true);

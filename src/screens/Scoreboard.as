@@ -1,4 +1,4 @@
-package screens 
+﻿package screens 
 {
 	import flash.display.MovieClip;
 	import flash.display.Shape;
@@ -7,10 +7,7 @@ package screens
 	import flash.text.TextFieldAutoSize;
 	import flash.events.Event;
 	import screens.Screen;
-	/**
-	 * ...
-	 * @author erwin henraat
-	 */
+	
 	public class Scoreboard extends Screen
 	{
 		private var _scores:Array = [];
